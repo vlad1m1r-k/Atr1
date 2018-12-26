@@ -637,11 +637,11 @@ public class GlistTest {
     }
 
     @Test
-    public void resize(){
-        for( int i = 0; i < 101; i++){
+    public void resize() {
+        for (int i = 0; i < 101; i++) {
             glist.add(i);
         }
-        for (int i = 100; i >= 0; i--){
+        for (int i = 100; i >= 0; i--) {
             assertEquals(new Integer(i), glist.get(i));
         }
     }
