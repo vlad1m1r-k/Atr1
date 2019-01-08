@@ -1,4 +1,4 @@
-package com.vladimir;
+package com.vladimir.list;
 
 import org.junit.Before;
 import org.junit.Test;
