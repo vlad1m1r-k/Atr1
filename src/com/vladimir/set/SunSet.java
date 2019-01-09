@@ -9,8 +9,6 @@ import java.util.Set;
 
 public class SunSet<T extends Comparable> implements Set<T> {
     private int size = 0;
-    //private int rSize = 0;
-    //private int lSize = 0;
     private Node<T> root;
 
     @Override
