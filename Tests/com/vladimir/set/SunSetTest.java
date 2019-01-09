@@ -3,10 +3,7 @@ package com.vladimir.set;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -23,12 +20,12 @@ public class SunSetTest {
     }
 
     @Test
-    public void sizeZero() {
+    public void testSizeZero() {
         assertEquals(0, set.size());
     }
 
     @Test
-    public void sizeNonZero() {
+    public void testSizeNonZero() {
         set.add(1);
         set.add(2);
         set.add(3);
@@ -36,19 +33,19 @@ public class SunSetTest {
     }
 
     @Test
-    public void isEmpty() {
+    public void testIsEmptyZeroSize() {
         assertTrue(set.isEmpty());
     }
 
     @Test
-    public void isNotEmpty() {
+    public void testIsEmptyNotZeroSize() {
         set.add(1);
         set.add(2);
         assertFalse(set.isEmpty());
     }
 
     @Test
-    public void contains() {
+    public void testContainsWhenContains() {
         set.add(1);
         set.add(2);
         set.add(3);
@@ -56,12 +53,12 @@ public class SunSetTest {
     }
 
     @Test
-    public void notContains() {
+    public void testContainsZeroSize() {
         assertFalse(set.contains(new Integer(3)));
     }
 
     @Test
-    public void notContains2() {
+    public void testContainsWhenNotContains() {
         set.add(1);
         set.add(2);
         set.add(3);
@@ -69,13 +66,13 @@ public class SunSetTest {
     }
 
     @Test
-    public void iteratorNotHasNext() {
+    public void testIteratorZeroSet() {
         Iterator<Integer> itr = set.iterator();
         assertFalse(itr.hasNext());
     }
 
     @Test
-    public void iteratorNotHasNext2() {
+    public void testIteratorEndOfSet() {
         set.add(1);
         Iterator<Integer> itr = set.iterator();
         itr.next();
@@ -83,7 +80,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void iteratorHasNext() {
+    public void testIteratorHasNext() {
         set.add(1);
         set.add(2);
         set.add(3);
@@ -95,7 +92,24 @@ public class SunSetTest {
     }
 
     @Test
-    public void toArray() {
+    public void testIteratorNext() {
+        set.add(1);
+        set.add(2);
+        Iterator<Integer> itr = set.iterator();
+        assertEquals(new Integer(1), itr.next());
+        assertEquals(new Integer(2), itr.next());
+    }
+
+    @Test (expected = NoSuchElementException.class)
+    public void testIteratorNextException() {
+        set.add(1);
+        Iterator<Integer> itr = set.iterator();
+        itr.next();
+        itr.next();
+    }
+
+    @Test
+    public void testToArraySuccess() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -106,7 +120,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void toArray2() {
+    public void testToArray2Success() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -122,12 +136,12 @@ public class SunSetTest {
     }
 
     @Test
-    public void add() {
+    public void testAddSuccess() {
         assertTrue(set.add(1));
     }
 
     @Test
-    public void notAdd() {
+    public void testAddNotSuccess() {
         set.add(1);
         assertFalse(set.add(null));
         assertFalse(set.add(1));
@@ -135,7 +149,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void notRemove() {
+    public void testRemoveNotSuccess() {
         assertFalse(set.remove(1));
         set.add(2);
         assertFalse(set.remove(1));
@@ -143,14 +157,14 @@ public class SunSetTest {
     }
 
     @Test
-    public void remove() {
+    public void testRemoveSuccess() {
         set.add(2);
         assertTrue(set.remove(2));
         assertTrue(set.isEmpty());
     }
 
     @Test
-    public void removeNoBranch() {
+    public void testRemoveNoBranch() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -165,7 +179,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void removeOneBranch() {
+    public void testRemoveOneBranch() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -178,7 +192,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void removeTwoBranch() {
+    public void testRemoveTwoBranch() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -195,7 +209,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void removeRoot() {
+    public void testRemoveRoot() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -208,7 +222,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void notContainsAll() {
+    public void testContainsAllNotSuccess() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -225,7 +239,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void containsAll() {
+    public void testContainsAllSuccess() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -237,7 +251,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void notAddAll() {
+    public void testAddAllNotSuccess() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -249,7 +263,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void addAll() {
+    public void testAddAllSuccess() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -260,7 +274,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void notRetainAll() {
+    public void testRetainAllNotSuccess() {
         set.add(3);
         set.add(1);
         set.add(2);
@@ -269,7 +283,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void retainAll() {
+    public void testRetainAllSuccess() {
         set.add(3);
         set.add(1);
         set.add(6);
@@ -282,7 +296,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void notRemoveAll() {
+    public void testRemoveAllNotSuccess() {
         set.add(3);
         set.add(1);
         set.add(2);
@@ -291,7 +305,7 @@ public class SunSetTest {
     }
 
     @Test
-    public void removeAll() {
+    public void testRemoveAllSuccess() {
         set.add(3);
         set.add(1);
         set.add(6);
